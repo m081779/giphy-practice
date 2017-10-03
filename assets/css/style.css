@@ -1,0 +1,37 @@
+body {
+	height: 100%;
+	width: 100%;
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	background: #BADA55;
+}
+.container {
+	width: 70%;
+	min-height: 100px;
+	background:gray;
+	margin-top: 50px;
+	text-align: center;
+}
+
+img{
+	margin:50px 20px;
+
+}
+
+#rating-text {
+	color: white;
+	font-size: 20px;
+	line-height: 20px;
+}
+
+.highlight {
+	background: red;
+	transition: background 500ms ease;
+}
+/*input, button {
+	margin-top: 20px;
+	height: 40px;
+	}
+*/
+	
