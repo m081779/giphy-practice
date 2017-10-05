@@ -5,6 +5,7 @@ var giphy = {
 		//initializing variables
 		rating: '',
 		response: '',
+		currentState: '',
 		buttonArr: [],	
 
 		//method that creates and appends buttons
@@ -36,7 +37,7 @@ var giphy = {
 		showCarousel: function () {
 			$('.carousel-box').empty();
 			//dynamically creates the carousel structure so that the generateCarouselItems method can populate it
-			var carouselElement = '<div id="myCarousel" class="carousel slide spaceBelow" data-ride="carousel">'+
+			var carouselElement = '<h4>Click image to <span class="state">animate</span></h4><div id="myCarousel" class="carousel slide spaceBelow" data-ride="carousel">'+
 								'<ol class="carousel-indicators"></ol>'+
 								'<div class="carousel-inner" role="listbox"></div>'+
 								'<a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">'+
@@ -59,7 +60,7 @@ var giphy = {
 				var div = $('<div class="item">');
 				//creates li's for the indicator circles on carousel
 				var li = $('<li>');
-				//sets data-target and data-slide-to for carousel
+				//sets data-target and data-slide-to attributes for carousel
 				li.attr({
 					'data-target': '#myCarousel',
 					'data-slide-to': i
@@ -72,8 +73,7 @@ var giphy = {
 					'data-animate': giphy.response.data[i].images.fixed_height.url,
 					'data-still': giphy.response.data[i].images.fixed_height_still.url, 
 					'data-state':'still',
-					'alt': 'giphy' + i
-					
+					'alt': 'giphy number ' + (i+1) + ' of search term ' + giphy.queryTerm				
 				//and appends them the .item container
 				}).appendTo(div);
 				//appends .item divs to .carousel-inner
@@ -143,6 +143,8 @@ var giphy = {
 
 	//delegated click event that executes showGiphy() when .itemButton is clicked
 	$(document).on('click','.itemButton',function () {
+		giphy.currentState = $('div.item.active').children().attr('data-state');
+		console.log(giphy.currentState);
 		//conditional checks if a rating has been assigned for query...
 		if (!giphy.rating){
 			//...if not checkMe class is added to remind user
@@ -184,10 +186,12 @@ var giphy = {
 		if ($(this).attr('data-state')==='still') {
 			$(this).attr('src', $(this).attr('data-animate'));
 			$(this).attr('data-state', 'animate');
+			$('.state').html('pause animation');
 		} 
 		else {
 			$(this).attr('src', $(this).attr('data-still'));
 			$(this).attr('data-state', 'still');
+			$('.state').html('animate');
 		}
 	});
 	//delegated click event that removes buttons when .removeButton is clicked
@@ -209,6 +213,28 @@ var giphy = {
 				//...if so it removes headline text
 				$('.button-box').empty();
 		}
+	});
+
+	$(document).on('click','.carousel-control',function () {
+		
+			
+		var currentSlide = $('li.active').attr('data-slide-to');
+		if ($(this).hasClass('left')) {
+
+			
+			if ($('div.item.active').prev().children().attr('data-state')==='still'){
+				$('.state').html('animate');
+			} else {
+				$('.state').html('pause animation');
+			}
+		} else {
+			if ($('div.item.active').next().children().attr('data-state')==='still'){
+				$('.state').html('animate');
+			} else {
+				$('.state').html('pause animation');
+			}
+		}
+	
 	});
 
 });//end of document ready function
