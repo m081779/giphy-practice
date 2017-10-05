@@ -3,48 +3,51 @@
 
 <head>
   <meta charset="utf-8">
-  <title>Giphy API</title>
+  <title>Giphy API Fun!</title>
 </head>
+
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 <link rel="stylesheet" href="assets/css/style.css">
 <style>
 
 </style>
 
-<body>
-
+<body class="text-center">
+    <h1 id="title" class="page-header text-center">Fun with the Giphy API!</h1>
 		<div class="container">
 			<div class="row">
-				
-			<!-- 	<div class="input-group text-center">
-					<input type="text" placeholder="Create button for..." id="queryTerm" class="">
-					<button id="search">Search</button>
-				</div> -->
-				<div class="input-group">
-      <input id="queryTerm" type="text" class="form-control" placeholder="Search for...">
-      <span class="input-group-btn">
-        <button id="search" class="btn btn-default" type="button">Go!</button>
-      </span>
-      
 
-    </div><!-- /input-group -->
-    <div class="rating-box">
-    	<span id="rating-text">Select a rating:</span>
-    	<div id="g" class="btn btn-success btn-large rating">G</div>
-    	<div id="pg" class="btn btn-primary btn-large rating">PG</div>
-    	<div id="pg13" class="btn btn-warning btn-large rating">PG-13</div>
-    	<div id="r" class="btn btn-danger btn-large rating">R</div>
-    	<div id="any" class="btn btn-default btn-large rating">Any</div>
-    </div>
-    <div class="button-box"></div>
+        <div class="inputContainer spaceBelow well">
+          <h4>Input text to create a search button</h4>
+  				<div class="input-group ">
+            
+            <input id="queryTerm" type="text" class="form-control" placeholder="Create button for...">
+            <span class="input-group-btn">
+              <button id="search" class="btn btn-default" type="button">Go!</button>
+            </span>
+          </div>
+        </div>
 
-				<div class="display"></div>
+        <div class="rating-box spaceBelow well">
+        	<span id="rating-text">Select a rating:</span>
+        	<button id="g" class="btn btn-success btn-large rating">G</button>
+        	<button id="pg" class="btn btn-primary btn-large rating">PG</button>
+        	<button id="pg13" class="btn btn-warning btn-large rating">PG-13</button>
+        	<button id="r" class="btn btn-danger btn-large rating">R</button>
+        	<button id="any" class="btn btn-default btn-large rating">Any</button>
+        </div>
+        <div class="button-box spaceBelow well"></div>
+        <div class="carousel-box"></div>
+
+
 			</div>
 		
 		</div>
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <script src="assets/js/script.js"></script>
+
 
 </body>
 

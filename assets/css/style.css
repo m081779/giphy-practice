@@ -4,34 +4,83 @@ body {
 	margin: 0;
 	padding: 0;
 	box-sizing: border-box;
-	background: #BADA55;
+	background: lightblue;
+	font-family: monospace;
 }
 .container {
 	width: 70%;
-	min-height: 100px;
 	background:gray;
 	margin-top: 50px;
 	text-align: center;
 }
 
-img{
-	margin:50px 20px;
+#title {
+	width: 70%;
+	margin:0 auto;
+	display: inline-block;
+	font-size: 50px;
+	letter-spacing: 4px;
+	font-weight: bold;
+	color: rgba(0,0,0,0.5);
+}
 
+.spaceBelow {
+	margin: 10px;
 }
 
 #rating-text {
-	color: white;
 	font-size: 20px;
-	line-height: 20px;
+
 }
 
-.highlight {
+.checkMe {
+	padding: 5px;
 	background: red;
 	transition: background 500ms ease;
+	color: white;
+	border-radius: 5px;
 }
-/*input, button {
-	margin-top: 20px;
+
+.carousel-inner > .item > img {
+    margin: 0 auto;
+}
+
+.divButton {
+	color: white;
+	position: relative;
+	display: inline-block;
 	height: 40px;
-	}
-*/
-	
+	padding: 0 10px;
+	line-height: 40px;
+	background: #006dcc;
+	border-radius: 5px;
+	cursor: pointer;
+	margin: 5px;
+	font-size: 20px;
+}
+
+.divButton:hover {
+	background: #0044cc;
+}
+
+.itemButton {
+	display: inline-block;
+	margin-left: 25px;
+}
+
+.removeButton {
+	position: absolute;
+	top:11px;
+	left: 10px;
+	line-height: 20px;
+	display: inline-block;
+	background: #d9534f;
+	height: 20px;
+	width: 20px;
+	margin-right: 10px;
+	border-radius: 5px;
+}
+
+.removeButton:hover {
+	transform: scale(1.1);
+}
