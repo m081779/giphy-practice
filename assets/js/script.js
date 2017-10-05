@@ -5,7 +5,6 @@ var giphy = {
 		//initializing variables
 		rating: '',
 		response: '',
-		currentState: '',
 		buttonArr: [],	
 
 		//method that creates and appends buttons
@@ -37,15 +36,16 @@ var giphy = {
 		showCarousel: function () {
 			$('.carousel-box').empty();
 			//dynamically creates the carousel structure so that the generateCarouselItems method can populate it
-			var carouselElement = '<h4>Click image to <span class="state">animate</span></h4><div id="myCarousel" class="carousel slide spaceBelow" data-ride="carousel">'+
-								'<ol class="carousel-indicators"></ol>'+
-								'<div class="carousel-inner" role="listbox"></div>'+
-								'<a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">'+
-								'<span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>'+
-								'<span class="sr-only">Previous</span></a>'+
-								'<a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">'+
-								'<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>'+
-								'<span class="sr-only">Next</span></a></div>';
+			var carouselElement = '<h4>Click image to <span class="state">animate</span></h4>'+
+									'<div id="myCarousel" class="carousel slide spaceBelow" data-ride="carousel">'+
+									'<ol class="carousel-indicators"></ol>'+
+									'<div class="carousel-inner" role="listbox"></div>'+
+									'<a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">'+
+									'<span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>'+
+									'<span class="sr-only">Previous</span></a>'+
+									'<a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">'+
+									'<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>'+
+									'<span class="sr-only">Next</span></a></div>';
 			//inserts the carouselElement in the correct spot in the DOM
 			$(carouselElement).appendTo('.carousel-box');
 		},
@@ -143,8 +143,6 @@ var giphy = {
 
 	//delegated click event that executes showGiphy() when .itemButton is clicked
 	$(document).on('click','.itemButton',function () {
-		giphy.currentState = $('div.item.active').children().attr('data-state');
-		console.log(giphy.currentState);
 		//conditional checks if a rating has been assigned for query...
 		if (!giphy.rating){
 			//...if not checkMe class is added to remind user
@@ -215,26 +213,30 @@ var giphy = {
 		}
 	});
 
-	$(document).on('click','.carousel-control',function () {
-		
-			
-		var currentSlide = $('li.active').attr('data-slide-to');
+	//click event to write correct instructions to carousel header
+	$(document).on('click','.carousel-control',function () {			
+		//conditional checks if left or right chevron is clicked
 		if ($(this).hasClass('left')) {
-
-			
+			//due to some wonkiness with bootstrap, I had to check the data-state of the previously active item
+			//for the timing of the text to make sense.  If it is "still"...
 			if ($('div.item.active').prev().children().attr('data-state')==='still'){
+				//... .state text changes to "animate"
 				$('.state').html('animate');
 			} else {
+				//otherwise it changes to "pause animation"
 				$('.state').html('pause animation');
 			}
+			//this condition fires if the right arrow is clicked
 		} else {
+			//again targeting the next element because of bootstrap weirdness, if it is 'still'...
 			if ($('div.item.active').next().children().attr('data-state')==='still'){
+				//... .state text changes to "animate"
 				$('.state').html('animate');
 			} else {
+				//otherwise it changes to "pause animation"
 				$('.state').html('pause animation');
 			}
 		}
-	
 	});
 
 });//end of document ready function
